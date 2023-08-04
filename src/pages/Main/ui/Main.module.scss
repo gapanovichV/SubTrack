@@ -1,0 +1,37 @@
+.Main {
+  height: calc(100vh - var(--navbar-height) -  var(--footer-height));
+  padding: 20px;
+  display: grid;
+  min-height: 500px;
+  width: 100%;
+}
+
+.Wrapper {
+  display: grid;
+  grid-template-areas:
+          "addSub info"
+          "card info"
+          "card info";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 50px 1fr 1fr;
+  gap: 20px;
+}
+
+.AddSub {
+  grid-area: addSub;
+}
+.Card {
+  grid-area: card;
+}
+
+.List {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Info {
+  grid-area: info;
+  background: var(--main-bg-color);
+}

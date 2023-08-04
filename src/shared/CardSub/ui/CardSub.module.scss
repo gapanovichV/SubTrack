@@ -1,0 +1,62 @@
+.CardSub {
+  background: var(--main-bg-color);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: var(--border-radius);
+  gap: 30px;
+}
+
+.LeftInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.RightInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.Logo {
+  padding: 10px 17px;
+  background: rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.Icon {
+  display: flex;
+  align-items: center;
+  svg {
+    width: 24px;
+    height: 24px;
+    path {
+      fill: var(--text-color);
+    }
+  }
+}
+
+.DeleteTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--font-l)
+}
+.ConfirmBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  .Confirm {
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    background: rgba(255, 0, 0, 0.5);
+    width: 70px;
+    font: var(--font-m);
+  }
+  .No {
+    background: rgba(0, 255, 0, 0.5);
+  }
+}
