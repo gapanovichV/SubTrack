@@ -7,3 +7,35 @@
   border: none;
   border-radius: var(--border-radius);
 }
+
+.Modal {
+  width: 500px;
+}
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  .InputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .Input {
+      background-color: var(--second-bg-color);
+      padding: 5px 15px;
+      border-radius: var(--border-radius);
+      outline: none;
+    }
+  }
+}
+
+.ColorPicker {
+  margin-top: 10px;
+  justify-content: space-around;
+}
+
+.Button {
+  margin-top: 20px;
+  width: 100%;
+  background-color: var(--second-bg-color);
+}

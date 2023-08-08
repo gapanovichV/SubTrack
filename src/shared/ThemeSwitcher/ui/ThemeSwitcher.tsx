@@ -1,3 +1,4 @@
+import {ReactElement} from "react";
 import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle';
 import {useTheme} from "app/providers/ThemeProvider";
 import classNames from "classnames";
@@ -10,7 +11,7 @@ export const  ThemeSwitcher = () => {
   return (
     <div className={classNames(cls.ThemeSwitcher)}>
       <div>dark</div>
-      <div className={classNames(cls.Toggle, {dark: theme === 'dark'})}>
+      <div className={classNames(cls.Toggle)}>
         <DarkModeToggle
         mode={theme}
         size='sm'
@@ -18,6 +19,6 @@ export const  ThemeSwitcher = () => {
       />
       </div>
       <div>light</div>
-  </div>
+    </div>
   );
 }

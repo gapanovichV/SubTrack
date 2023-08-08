@@ -4,16 +4,24 @@ import cls from './CardSub.module.scss'
 import DeleteIcon from 'shared/assets/icons/delete.svg'
 import ChangeIcon from 'shared/assets/icons/change.svg'
 import {Modal} from "shared/Modal";
+
+enum Color {
+  red = 'rgba(255, 0, 0, 0.4)',
+  green = 'rgba(0, 255, 0, 0.4)',
+  blue = 'rgba(0, 0, 255, 0.4)',
+}
+
 interface CardSubProps {
   className?: string
 }
 export const CardSub  = ({className}: CardSubProps) => {
   const [isOpenDeleteModel, setIsOpenDeleteModal] = useState(false)
   const [isOpenChangeModal, setIsOpenChangeModal] = useState(false)
+
   return (
     <div className={classNames(cls.CardSub, cls[className])}>
       <div className={classNames(cls.LeftInfo)}>
-        <div className={classNames(cls.Logo)}>N</div>
+        <div className={classNames(cls.Logo)} style={{background: Color.red}}>N</div>
         <div>Netflix</div>
       </div>
       <div className={classNames(cls.RightInfo)}>

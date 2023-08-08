@@ -9,6 +9,10 @@ interface ModalProps {
   onClose?: () => void;
 }
 
+enum Key {
+  ESCAPE = 'Escape'
+}
+
 export const Modal = (props: ModalProps) => {
   const { className, children, isOpen, onClose } = props;
 
@@ -18,6 +22,14 @@ export const Modal = (props: ModalProps) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === Key.ESCAPE) {
+      console.log(1)
+      closeHandler()
+    }
+  }
+
+
   const onContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -25,9 +37,9 @@ export const Modal = (props: ModalProps) => {
     [cls.opened]: isOpen,
   };
   return (
-    <div className={classNames(cls.Modal, mods, [className])}>
+    <div onKeyDown={(e) => handleKeyDown(e)}  className={classNames(cls.Modal, mods)} >
       <div className={cls.overlay} onClick={closeHandler}>
-        <div className={cls.content} onClick={onContentClick}>
+        <div className={classNames(cls.content, [className])} onClick={onContentClick}>
           {children}
         </div>
       </div>

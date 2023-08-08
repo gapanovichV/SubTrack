@@ -3,13 +3,12 @@ import cls from './Navbar.module.scss'
 import { ThemeSwitcher } from "shared/ThemeSwitcher";
 
 interface NavbarProps {
-  className?: string
 }
 
 
-export const Navbar = ({className}: NavbarProps) => {
+export const Navbar = ({}: NavbarProps) => {
   return (
-    <div className={classNames(cls.Navbar, [className])}>
+    <div className={classNames(cls.Navbar)}>
       <div className={cls.logo}>SubTrack</div>
       <div className={classNames(cls.NavbarRight)}>
         <ThemeSwitcher />

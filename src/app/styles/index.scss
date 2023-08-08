@@ -23,3 +23,12 @@ button {
   cursor: pointer;
   color: var(--text-color);
 }
+input {
+  color: var(--text-color);
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  font: var(--font-m);
+}
