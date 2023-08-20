@@ -14,4 +14,4 @@ export interface ISubForm {
   color: (typeof color)[number]
 }
 
-export const color: string[] = ["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3"]
+export const color: string[] = ["#E50914", "#1DB954", "#107C10", "#5865F2", "#0070D1"]

@@ -36,6 +36,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
+    "nanoid": "^4.0.2",
     "react-color": "^2.19.3",
     "sass": "^1.64.2",
     "sass-loader": "^13.3.2",

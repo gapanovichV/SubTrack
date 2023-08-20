@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AddSubSchema, color, ISubForm } from "./types";
@@ -6,6 +6,9 @@ import { CirclePicker } from 'react-color';
 import cls from './AddSub.module.scss'
 import classNames from "classnames";
 import { Modal } from "shared/Modal";
+import {nanoid} from "nanoid";
+import {SubContext} from "app/providers/SubProvider";
+
 
 interface AddSubProps {
   className?: string
@@ -14,7 +17,7 @@ interface AddSubProps {
 export const AddSub  = ({className}: AddSubProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [currentColor, setCurrentColor] = useState('')
-
+  const {value, setValue} = useContext(SubContext);
   const {
     register,
     handleSubmit,
@@ -23,6 +26,11 @@ export const AddSub  = ({className}: AddSubProps) => {
   } = useForm({ mode: 'onChange', resolver: yupResolver(AddSubSchema) });
 
   const handleSubmitForm: SubmitHandler<ISubForm> = (data) => {
+    data.id = nanoid()
+    data.color = currentColor
+    setCurrentColor('')
+    setValue([...value, data])
+    reset()
   }
 
   const handleChangeComplete = (color: { hex: React.SetStateAction<string>; }) => {
@@ -35,7 +43,7 @@ export const AddSub  = ({className}: AddSubProps) => {
       <Modal className={classNames(cls.Modal)} isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <h2>Add new subscription</h2>
         <form
-          name='formAddSub'
+          id='formAddSub'
           className={classNames(cls.Form)}
           onSubmit={handleSubmit(handleSubmitForm)}
           autoFocus={true}>
