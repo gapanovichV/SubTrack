@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { Modal } from "shared/Modal";
 import {nanoid} from "nanoid";
 import {SubContext} from "app/providers/SubProvider";
+import {LOCAL_STORAGE_SUB_KEY} from "app/providers/SubProvider/lib/SubContext";
 
 
 interface AddSubProps {
@@ -16,8 +17,9 @@ interface AddSubProps {
 
 export const AddSub  = ({className}: AddSubProps) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentColor, setCurrentColor] = useState('')
+  const [currentColor, setCurrentColor] = useState(color[0])
   const {value, setValue} = useContext(SubContext);
+
   const {
     register,
     handleSubmit,
@@ -28,7 +30,6 @@ export const AddSub  = ({className}: AddSubProps) => {
   const handleSubmitForm: SubmitHandler<ISubForm> = (data) => {
     data.id = nanoid()
     data.color = currentColor
-    setCurrentColor('')
     setValue([...value, data])
     reset()
   }

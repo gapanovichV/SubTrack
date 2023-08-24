@@ -8,3 +8,5 @@ export interface SubContextProps {
 }
 
 export const SubContext = createContext<SubContextProps>({});
+
+export const LOCAL_STORAGE_SUB_KEY = 'subscriptions';

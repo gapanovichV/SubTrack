@@ -1,53 +1,54 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import classNames from "classnames";
 import cls from './CardSub.module.scss'
 import DeleteIcon from 'shared/assets/icons/delete.svg'
 import ChangeIcon from 'shared/assets/icons/change.svg'
 import {Modal} from "shared/Modal";
-
-enum Color {
-  red = 'rgba(255, 0, 0, 0.4)',
-  green = 'rgba(0, 255, 0, 0.4)',
-  blue = 'rgba(0, 0, 255, 0.4)',
-}
+import {SubContext} from "app/providers/SubProvider";
+import {ISubForm} from "shared/AddSub/ui/types";
 
 interface CardSubProps {
   className?: string
+  value?: ISubForm,
 }
-export const CardSub  = ({className}: CardSubProps) => {
+export const CardSub: React.FC<CardSubProps>  = ({className}) => {
   const [isOpenDeleteModel, setIsOpenDeleteModal] = useState(false)
   const [isOpenChangeModal, setIsOpenChangeModal] = useState(false)
+  const {value, setValue} = useContext(SubContext);
 
   return (
-    <div className={classNames(cls.CardSub, cls[className])}>
-      <div className={classNames(cls.LeftInfo)}>
-        <div className={classNames(cls.Logo)} style={{background: Color.red}}>N</div>
-        <div>Netflix</div>
+    value.map((value) => (
+      <div key={value.id} className={classNames(cls.CardSub, cls[className])}>
+        <div className={classNames(cls.LeftInfo)}>
+          <div className={classNames(cls.Logo)} style={{background: value.color}}>{value.name.charAt(0).toUpperCase()}</div>
+          <div>{value.name}</div>
+        </div>
+        <div className={classNames(cls.RightInfo)}>
+          <div>{value.price}<span>$</span></div>
+          <div>{value.date}</div>
+          <button
+            className={classNames(cls.Icon)}
+            onClick={() => setIsOpenDeleteModal(true)}
+            type="button"><DeleteIcon/>
+          </button>
+          <Modal isOpen={isOpenDeleteModel} onClose={() => setIsOpenDeleteModal(false)}>
+            <h2 className={classNames(cls.DeleteTitle)}>Want to delete?</h2>
+            <div className={classNames(cls.ConfirmBlock)}>
+              <button className={classNames(cls.Confirm)}>YES</button>
+              <button className={classNames(cls.Confirm, cls.No)}>NO</button>
+            </div>
+          </Modal>
+          <button
+            className={classNames(cls.Icon)}
+            onClick={() => setIsOpenChangeModal(true)}
+            type='button' ><ChangeIcon />
+          </button>
+          <Modal isOpen={isOpenChangeModal} onClose={() => setIsOpenChangeModal(false)}>
+            Change
+          </Modal>
+        </div>
       </div>
-      <div className={classNames(cls.RightInfo)}>
-        <div>5.99<span>$</span></div>
-        <div>04/08/2023</div>
-        <button
-          className={classNames(cls.Icon)}
-          onClick={() => setIsOpenDeleteModal(true)}
-          type="button"><DeleteIcon/>
-        </button>
-        <Modal isOpen={isOpenDeleteModel} onClose={() => setIsOpenDeleteModal(false)}>
-          <h2 className={classNames(cls.DeleteTitle)}>Want to delete?</h2>
-          <div className={classNames(cls.ConfirmBlock)}>
-            <button className={classNames(cls.Confirm)}>YES</button>
-            <button className={classNames(cls.Confirm, cls.No)}>NO</button>
-          </div>
-        </Modal>
-        <button
-          className={classNames(cls.Icon)}
-          onClick={() => setIsOpenChangeModal(true)}
-          type='button' ><ChangeIcon />
-        </button>
-        <Modal isOpen={isOpenChangeModal} onClose={() => setIsOpenChangeModal(false)}>
-          Change
-        </Modal>
-      </div>
-    </div>
-  );
+      )
+    )
+  )
 }
