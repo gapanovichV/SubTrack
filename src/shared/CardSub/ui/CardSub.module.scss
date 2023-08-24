@@ -38,17 +38,17 @@
   }
 }
 
-.DeleteTitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: var(--font-l)
-}
 .ConfirmBlock {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-top: 20px;
+  .DeleteTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: var(--font-l)
+  }
   .Confirm {
     padding: 10px 20px;
     border-radius: var(--border-radius);

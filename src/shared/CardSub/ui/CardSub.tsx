@@ -14,7 +14,19 @@ interface CardSubProps {
 export const CardSub: React.FC<CardSubProps>  = ({className}) => {
   const [isOpenDeleteModel, setIsOpenDeleteModal] = useState(false)
   const [isOpenChangeModal, setIsOpenChangeModal] = useState(false)
+  const [idDel, setIdDel] = useState('')
   const {value, setValue} = useContext(SubContext);
+
+  const handleClickDelete = (id :string) => {
+    setIsOpenDeleteModal(true)
+    setIdDel(id)
+  }
+
+  const handleConfirmDelete = (idDel: string) => {
+    const newArray  = value.filter(({id}) => id != idDel)
+    setIsOpenDeleteModal(false)
+    setValue(newArray)
+  }
 
   return (
     value.map((value) => (
@@ -28,14 +40,14 @@ export const CardSub: React.FC<CardSubProps>  = ({className}) => {
           <div>{value.date}</div>
           <button
             className={classNames(cls.Icon)}
-            onClick={() => setIsOpenDeleteModal(true)}
+            onClick={() => handleClickDelete(value.id)}
             type="button"><DeleteIcon/>
           </button>
           <Modal isOpen={isOpenDeleteModel} onClose={() => setIsOpenDeleteModal(false)}>
             <h2 className={classNames(cls.DeleteTitle)}>Want to delete?</h2>
             <div className={classNames(cls.ConfirmBlock)}>
-              <button className={classNames(cls.Confirm)}>YES</button>
-              <button className={classNames(cls.Confirm, cls.No)}>NO</button>
+              <button onClick={() => handleConfirmDelete(idDel)} className={classNames(cls.Confirm)}>YES</button>
+              <button onClick={() => setIsOpenDeleteModal(false)} className={classNames(cls.Confirm, cls.No)}>NO</button>
             </div>
           </Modal>
           <button
